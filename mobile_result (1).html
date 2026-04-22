@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header flex-between">
+    <div>
+        <h1 class="glitch" data-text="TELECOM INTELLIGENCE"><i class="fa-solid fa-mobile-screen-button text-primary"></i> TELECOM INTELLIGENCE</h1>
+        <p>Target Vector: <strong class="text-glow">{{ data.target }}</strong> | Type: {{ scan_type }}</p>
+    </div>
+    <div class="action-buttons">
+        <a href="{{ url_for('reports') }}" class="btn btn-primary"><i class="fa-solid fa-download"></i> Export Data</a>
+    </div>
+</div>
+
+<div class="dashboard-grid mt-30">
+    <div class="main-column">
+        <div class="glass-card mb-30">
+            <h3><i class="fa-solid fa-satellite-dish"></i> Carrier & Location Data</h3>
+            <div class="grid-2-col mt-20">
+                <div class="info-block border-bottom pb-15">
+                    <span class="text-secondary block mb-5">Country</span>
+                    <strong><i class="fa-solid fa-flag text-primary"></i> {{ data.country }}</strong>
+                </div>
+                <div class="info-block border-bottom pb-15">
+                    <span class="text-secondary block mb-5">State/Region</span>
+                    <strong><i class="fa-solid fa-map-location-dot text-primary"></i> {{ data.state }}</strong>
+                </div>
+                <div class="info-block pt-15">
+                    <span class="text-secondary block mb-5">Telecom Provider</span>
+                    <strong><i class="fa-solid fa-tower-cell text-primary"></i> {{ data.telecom_provider }}</strong>
+                </div>
+                <div class="info-block pt-15">
+                    <span class="text-secondary block mb-5">SIM Circle / Zone</span>
+                    <strong><i class="fa-solid fa-circle-nodes text-primary"></i> {{ data.sim_circle }}</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card mb-30">
+            <h3><i class="fa-solid fa-comment-sms"></i> App Presence</h3>
+            <div class="mt-20 flex-center-y gap-20">
+                <div class="app-badge {{ 'active' if data.whatsapp_presence else 'inactive' }}">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp: {{ 'Detected' if data.whatsapp_presence else 'None' }}</span>
+                </div>
+                <div class="app-badge {{ 'active' if data.telegram_presence else 'inactive' }}">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span>Telegram: {{ 'Detected' if data.telegram_presence else 'None' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="side-column">
+        <div class="glass-card mb-30 risk-card text-center">
+            <h3>Threat Level</h3>
+            <div class="risk-meter mx-auto mt-20">
+                <div class="circular-progress" data-progress="{{ data.risk_score }}">
+                    <div class="inner-circle"></div>
+                    <p class="percentage">{{ data.risk_score }}<span>/100</span></p>
+                </div>
+            </div>
+            
+            <div class="mt-20">
+                <p>Spam Reports: <strong>{{ data.spam_reports }}</strong></p>
+                <p>Carrier Status: <strong class="text-success">{{ data.carrier_lookup }}</strong></p>
+            </div>
+        </div>
+        
+        <div class="glass-card mb-30">
+            <div class="flex-between">
+                <h3><i class="fa-solid fa-code"></i> JSON</h3>
+                <button id="toggle-json" class="btn btn-small btn-outline"><i class="fa-solid fa-eye"></i></button>
+            </div>
+            <div class="json-viewer hidden mt-15" id="json-viewer">
+                <pre><code id="json-code"></code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.resultData = {{ data | tojson | safe }};
+</script>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content glass-card premium-shadow">
+        <div class="badge-primary mb-20"><i class="fa-solid fa-satellite"></i> OSINT SYSTEM V2.0 ONLINE</div>
+        <h1 class="hero-title glitch" data-text="GOD LEVEL RECON">GOD LEVEL RECON</h1>
+        <p class="hero-subtitle">The ultimate Digital Footprint Intelligence dashboard. Correlate surface, deep, and dark web vectors in milliseconds.</p>
+        
+        <div class="hero-actions">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary pulse-btn btn-large">
+                <i class="fa-solid fa-terminal"></i> Launch Terminal
+            </a>
+            <a href="{{ url_for('about') }}" class="btn btn-outline btn-large">
+                <i class="fa-solid fa-book-open"></i> Read Intel Brief
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="stats-grid mt-40">
+    <div class="stat-card glass-card hover-glow">
+        <div class="stat-icon cyber-blue"><i class="fa-solid fa-fingerprint"></i></div>
+        <div class="stat-info">
+            <h3>Identity Fusion</h3>
+            <p>Cross-platform entity tracking</p>
+        </div>
+    </div>
+    <div class="stat-card glass-card hover-glow">
+        <div class="stat-icon cyber-purple"><i class="fa-solid fa-network-wired"></i></div>
+        <div class="stat-info">
+            <h3>Infrastructure</h3>
+            <p>Domain & ASN Intelligence</p>
+        </div>
+    </div>
+    <div class="stat-card glass-card hover-glow">
+        <div class="stat-icon cyber-green"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="stat-info">
+            <h3>Mobile Comms</h3>
+            <p>Telecom & App Presence</p>
+        </div>
+    </div>
+    <div class="stat-card glass-card hover-glow">
+        <div class="stat-icon cyber-red"><i class="fa-solid fa-user-secret"></i></div>
+        <div class="stat-info">
+            <h3>Dark Web</h3>
+            <p>Breach & Exposure Signals</p>
+        </div>
+    </div>
+</div>
+
+<div class="data-stream-container mt-40 glass-card">
+    <div class="flex-between border-bottom pb-15 mb-15">
+        <h3><i class="fa-solid fa-bolt text-warning"></i> Live Global Threat Stream</h3>
+        <span class="text-secondary text-small">Simulated Data</span>
+    </div>
+    <div class="data-stream" id="live-stream">
+        <div class="stream-item"><span class="text-success">[OK]</span> Node US-E1 synchronized.</div>
+        <div class="stream-item"><span class="text-warning">[WARN]</span> High volume API requests detected on IG Graph.</div>
+        <div class="stream-item"><span class="text-success">[OK]</span> Deep web indexes updated 2m ago.</div>
+        <div class="stream-item text-danger type-anim">[ALERT] New breach dump detected on Ahmia index. Parsing...</div>
+    </div>
+</div>
+{% endblock %}

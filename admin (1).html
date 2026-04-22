@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa-solid fa-shield-halved text-primary"></i> System Administration</h1>
+    <p>Core infrastructure status and API management.</p>
+</div>
+
+<div class="dashboard-grid mt-30">
+    <div class="main-column">
+        <div class="glass-card mb-30">
+            <h3><i class="fa-solid fa-server"></i> Server Health Matrix</h3>
+            <div class="table-responsive mt-15">
+                <table class="cyber-table">
+                    <thead>
+                        <tr>
+                            <th>Node</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Load</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alpha-01</td>
+                            <td>US-East</td>
+                            <td><span class="badge success">ONLINE</span></td>
+                            <td>42%</td>
+                        </tr>
+                        <tr>
+                            <td>Beta-02</td>
+                            <td>EU-Central</td>
+                            <td><span class="badge success">ONLINE</span></td>
+                            <td>68%</td>
+                        </tr>
+                        <tr>
+                            <td>Gamma-Tor</td>
+                            <td>Onion Routing</td>
+                            <td><span class="badge warning">DEGRADED</span></td>
+                            <td>95%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="side-column">
+        <div class="glass-card mb-30">
+            <h3><i class="fa-solid fa-key"></i> API Quotas</h3>
+            <div class="mt-15">
+                <div class="mb-10">
+                    <div class="flex-between text-small mb-5"><span>Shodan API</span> <span>450/500</span></div>
+                    <div class="meter-bg"><div class="meter-fill" style="width: 90%; background: var(--success);"></div></div>
+                </div>
+                <div class="mb-10 mt-15">
+                    <div class="flex-between text-small mb-5"><span>Clearbit API</span> <span>1200/2000</span></div>
+                    <div class="meter-bg"><div class="meter-fill" style="width: 60%; background: var(--accent-blue);"></div></div>
+                </div>
+                <div class="mb-10 mt-15">
+                    <div class="flex-between text-small mb-5"><span>HaveIBeenPwned</span> <span class="text-danger">LIMIT</span></div>
+                    <div class="meter-bg"><div class="meter-fill" style="width: 100%; background: var(--danger);"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

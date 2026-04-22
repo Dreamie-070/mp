@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa-solid fa-terminal text-primary"></i> Main Control Terminal</h1>
+    <p>Select target vector and deploy scanning modules.</p>
+</div>
+
+<div class="dashboard-grid">
+    <div class="scan-panel glass-card premium-shadow">
+        <div class="flex-between border-bottom pb-15 mb-20">
+            <h2><i class="fa-solid fa-crosshairs"></i> Target Initialization</h2>
+            <button class="btn btn-secondary btn-small" id="clear-form-btn"><i class="fa-solid fa-eraser"></i> Clear</button>
+        </div>
+
+        <form id="scan-form" action="{{ url_for('run_scan') }}" method="POST">
+            <div class="form-row">
+                <div class="form-group flex-1">
+                    <label for="scan_type"><i class="fa-solid fa-layer-group"></i> Investigation Vector</label>
+                    <select id="scan_type" name="scan_type" required>
+                        <optgroup label="Identity Vectors">
+                            <option value="Full Name">Full Name Search</option>
+                            <option value="Username" selected>Username Sweep</option>
+                            <option value="Instagram Username">Instagram Deep Scan</option>
+                        </optgroup>
+                        <optgroup label="Comms Vectors">
+                            <option value="Email Address">Email Exposure</option>
+                            <option value="Mobile Number">Mobile / Telecom</option>
+                        </optgroup>
+                        <optgroup label="Infrastructure">
+                            <option value="Domain">Domain DNS / OSINT</option>
+                            <option value="Website URL">Website Deep Scan</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group mt-15">
+                <label for="target_value"><i class="fa-solid fa-keyboard"></i> Target Value</label>
+                <div class="input-with-icon">
+                    <input type="text" id="target_value" name="target_value" placeholder="Enter target identifier..." required autocomplete="off" class="mega-input">
+                    <i class="fa-solid fa-bullseye input-icon"></i>
+                </div>
+            </div>
+            
+            <div class="scan-actions mt-30">
+                <button type="submit" class="btn btn-primary btn-large flex-1" id="run-scan-btn">
+                    <span><i class="fa-solid fa-bolt"></i> Execute Scan</span>
+                </button>
+                <button type="button" class="btn btn-outline btn-large flex-1" id="deep-scan-btn">
+                    <span><i class="fa-solid fa-biohazard"></i> Deep / Fusion Scan</span>
+                </button>
+            </div>
+        </form>
+        
+        <!-- Premium Loader Overlay -->
+        <div class="loader-overlay" id="loader-overlay">
+            <div class="cyber-spinner"></div>
+            <h3 class="mt-20">EXECUTING PROTOCOL</h3>
+            <p class="loader-text mono-text" id="loader-text">[ WAIT ] Handshaking with proxies...</p>
+            <div class="progress-bar-container mt-15">
+                <div class="progress-bar" id="scan-progress"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="side-panel-group">
+        <div class="glass-card mb-20 highlight-border">
+            <h3><i class="fa-solid fa-microchip"></i> System Load</h3>
+            <div class="load-meters mt-15">
+                <div class="meter-item">
+                    <div class="flex-between text-small mb-5"><span>CPU</span> <span>42%</span></div>
+                    <div class="meter-bg"><div class="meter-fill" style="width: 42%; background: var(--accent-blue);"></div></div>
+                </div>
+                <div class="meter-item mt-10">
+                    <div class="flex-between text-small mb-5"><span>API Quota</span> <span>89%</span></div>
+                    <div class="meter-bg"><div class="meter-fill" style="width: 89%; background: var(--success);"></div></div>
+                </div>
+                <div class="meter-item mt-10">
+                    <div class="flex-between text-small mb-5"><span>Proxy Pool</span> <span class="text-warning">12%</span></div>
+                    <div class="meter-bg"><div class="meter-fill" style="width: 12%; background: var(--warning);"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Activity</h3>
+            <ul class="activity-list mt-15">
+                <li>
+                    <i class="fa-solid fa-globe text-primary"></i>
+                    <div class="act-details">
+                        <span>example.com</span>
+                        <small>Domain Scan • 2 mins ago</small>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-brands fa-instagram text-pink"></i>
+                    <div class="act-details">
+                        <span>johndoe_99</span>
+                        <small>IG Deep Scan • 1 hr ago</small>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-envelope text-warning"></i>
+                    <div class="act-details">
+                        <span>target@gmail.com</span>
+                        <small>Email Exposure • 3 hrs ago</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa-solid fa-vault text-primary"></i> Secure Databank & Exports</h1>
+    <p>Manage, generate, and securely download intelligence reports.</p>
+</div>
+
+<div class="dashboard-grid mt-30">
+    <div class="main-column">
+        <div class="glass-card mb-30">
+            <div class="flex-between border-bottom pb-15 mb-20">
+                <h3><i class="fa-solid fa-file-export"></i> Export Formats</h3>
+                <span class="badge success">Ready</span>
+            </div>
+            
+            <div class="export-grid">
+                <!-- PDF -->
+                <div class="export-card premium-shadow">
+                    <div class="export-icon text-danger"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h4>PDF Dossier</h4>
+                    <p class="text-secondary text-small mb-15">Executive summary with charts and visual metrics.</p>
+                    <button class="btn btn-outline full-width" onclick="downloadReport('pdf')">Generate PDF</button>
+                </div>
+                
+                <!-- JSON -->
+                <div class="export-card premium-shadow">
+                    <div class="export-icon text-warning"><i class="fa-solid fa-file-code"></i></div>
+                    <h4>Raw JSON</h4>
+                    <p class="text-secondary text-small mb-15">Machine-readable payload for API integration.</p>
+                    <button class="btn btn-outline full-width" onclick="downloadReport('json')">Download JSON</button>
+                </div>
+                
+                <!-- CSV -->
+                <div class="export-card premium-shadow">
+                    <div class="export-icon text-success"><i class="fa-solid fa-file-csv"></i></div>
+                    <h4>CSV Matrix</h4>
+                    <p class="text-secondary text-small mb-15">Tabular data for Maltego or SIEM analysis.</p>
+                    <button class="btn btn-outline full-width" onclick="downloadReport('csv')">Download CSV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="side-column">
+        <div class="glass-card mb-30">
+            <h3><i class="fa-solid fa-bookmark"></i> Saved Reports</h3>
+            <ul class="activity-list mt-15">
+                <li class="border-bottom pb-10 mb-10">
+                    <i class="fa-solid fa-file-pdf text-danger"></i>
+                    <div class="act-details">
+                        <span>Target_Alpha_Intel.pdf</span>
+                        <small>12MB • 2 days ago</small>
+                    </div>
+                    <i class="fa-solid fa-download cursor-pointer hover-text-primary"></i>
+                </li>
+                <li class="border-bottom pb-10 mb-10">
+                    <i class="fa-solid fa-file-code text-warning"></i>
+                    <div class="act-details">
+                        <span>Domain_Scan_Payload.json</span>
+                        <small>45KB • 5 days ago</small>
+                    </div>
+                    <i class="fa-solid fa-download cursor-pointer hover-text-primary"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
